@@ -35,17 +35,35 @@
             return "\nID Member: " . $this->id . " Member Name: " . $this->name . " Institution: " . $this->institution;
         }
     }
+    
+    class digitalbook extends book {
+        public $filesize;
+        
+        public function __construct($title, $author,$publisher,$filesize){
+            parent::__construct($title, $author,$publisher);
+            $this->filesize = $filesize;
+        }
+
+        public function download(){
+            return "\nE-Book " . $this->title . " by " . $this->author . " Has been Downloaded";
+        }
+
+        public function get_info(){
+            return "\nNama E-Buku: " . $this->title . " Karya: " . $this->author . " Penerbit: " . $this-> publisher . " Size: " . $this->filesize . " kb";
+        }
+    }
 
     $book1 = new book("Untitled", "GD", "BB");
-    $book2 = new book("Summer, Night", "Ji Hee", "W2E");
+    $ebook1 = new digitalbook("Summer, Night", "Ji Hee", "W2E", "1.002");
 
     echo $book1->get_info();
-    echo $book2->get_info();
-
+    echo $ebook1->get_info();
+    
     $member = new member(); 
     $member->setdatamember("24123","Yu Ree","NTU");
     echo $member->getdatamember();
 
     echo $book1->borrow();
+    echo $ebook1->download();
 
 ?>
